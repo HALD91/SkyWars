@@ -1,0 +1,9 @@
+name: SkyWars
+version: 1.0.2.1
+author: HALD91
+main: me.hald91.sw.Main
+api-version: 1.13
+
+commands:
+  skywars:
+    permission: skywars.use
