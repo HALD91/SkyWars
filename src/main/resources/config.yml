@@ -2,4 +2,6 @@
 
 Prefix: '&6YourPrefix'
 
-PrefixMenu: '&6YourPrefix'
+HelpMenuName: '&6YourHelpMenuName'
+
+Locations:
