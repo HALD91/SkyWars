@@ -44,10 +44,15 @@ public class CommandManager implements CommandExecutor {
                         return true;
                     }
                     if (args[0].equalsIgnoreCase("Help")) {
-                        sender.sendMessage(ChatColor.WHITE + "---------------------" + " " + ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', prefix1 + " ") + ChatColor.WHITE + "-------------------");
+                        sender.sendMessage(ChatColor.WHITE + "---------------------" + " " + ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', prefix + " ") + ChatColor.WHITE + "-------------------");
                         sender.sendMessage(" ");
-                        sender.sendMessage(ChatColor.AQUA + "/Skywars" + " " + "Help" + " " + ChatColor.WHITE + "To get a list of the commands");
-                        sender.sendMessage(ChatColor.AQUA + "/Skywars" + " " + "Reload" + " " + ChatColor.WHITE + "To reload the config");
+                        sender.sendMessage(ChatColor.AQUA + "/Skywars" + " " + "Help" + " " + ChatColor.WHITE + "To get a list of the commands.");
+                        sender.sendMessage(ChatColor.AQUA + "/Skywars" + " " + "Reload" + " " + ChatColor.WHITE + "To reload the config.");
+                        sender.sendMessage(ChatColor.AQUA + "/Skywars" + " " + "List" + " " + ChatColor.WHITE + "To get the list of Locations.");
+                        sender.sendMessage(ChatColor.AQUA + "/Skywars" + " " + "<Location>" + " " + ChatColor.WHITE + "To teleport to locations.");
+                        sender.sendMessage(ChatColor.AQUA + "/Skywars" + " " + "Set" + "<Location>" + " " + ChatColor.WHITE + "To set a location.");
+                        sender.sendMessage(ChatColor.AQUA + "/Skywars" + " " + "Del" + "<Location>" + " " + ChatColor.WHITE + "To del a location.");
+                        sender.sendMessage(ChatColor.AQUA + "/Skywars" + " " + "SetPrefix" + "<Prefix>" + " " + ChatColor.WHITE + "To set a new prefix.");
                         sender.sendMessage(" ");
                         sender.sendMessage(ChatColor.WHITE + "-----------------------------------------------------");
                         return true;
@@ -74,7 +79,7 @@ public class CommandManager implements CommandExecutor {
                     if (args[0].equalsIgnoreCase("set")) {
                         if (sender.hasPermission("skywars.admin.set")) {
                             if (!args[1].isEmpty()) {
-                                    if (args[1].contains("&") || (args[1].contains("1") || (args[1].contains("2") || (args[1].contains("3") || (args[1].contains("4") || (args[1].contains("5") || (args[1].contains("6") || (args[1].contains("7") || (args[1].contains("8") || (args[1].contains("9"))))))))))) {
+                                    if (args[1].contains("&") && (args[1].contains("1") || (args[1].contains("2") || (args[1].contains("3") || (args[1].contains("4") || (args[1].contains("5") || (args[1].contains("6") || (args[1].contains("7") || (args[1].contains("8") || (args[1].contains("9") || (args[1].contains("a") || (args[1].contains("b") || (args[1].contains("c") || (args[1].contains("d") || (args[1].contains("e") || (args[1].contains("f"))))))))))))))))) {
                                         sender.sendMessage(org.bukkit.ChatColor.translateAlternateColorCodes('&', main.getConfig().getString("Prefix").toString() + " " + org.bukkit.ChatColor.WHITE + "using color codes on the warp name arent allow."));
                                     } else {
                                         String x = valueOf(player.getLocation().getX());
@@ -119,22 +124,22 @@ public class CommandManager implements CommandExecutor {
                                             }
                                         }
                                     }
-                                    if (args[0].equalsIgnoreCase("SetPrefix")) {
-                                        if (sender.hasPermission("skywars.admin.setprefix")) {
-                                            if (!args[1].isEmpty()) {
-                                                main.getConfig().set("Prefix", args[1]);
-                                                main.saveConfig();
-                                                sender.sendMessage(org.bukkit.ChatColor.WHITE + "Your new prefix" + org.bukkit.ChatColor.RESET + " " + org.bukkit.ChatColor.translateAlternateColorCodes('&', main.getConfig().getString("Prefix").toString()));
-                                            }
-                                            return true;
-                                        }
-                                    }
-                                    return true;
                                 }
                             }
                         }
+                        if (args[0].equalsIgnoreCase("SetPrefix")) {
+                            if (sender.hasPermission("skywars.admin.setprefix")) {
+                                if (!args[1].isEmpty()) {
+                                    main.getConfig().set("Prefix", args[1]);
+                                    main.saveConfig();
+                                    sender.sendMessage(org.bukkit.ChatColor.WHITE + "Your new prefix" + org.bukkit.ChatColor.RESET + " " + org.bukkit.ChatColor.translateAlternateColorCodes('&', main.getConfig().getString("Prefix").toString()));
+                                }
+                                return true;
+                            }
+                        }
+                        return true;
+                        }
                     }
-                }
-            }return false;
+                }return false;
         }
     }
